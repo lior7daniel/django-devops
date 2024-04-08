@@ -1,0 +1,34 @@
+version: "3.9"
+services:
+
+  app:
+    depends_on:
+     - postgres_db
+    build:
+     context: .
+     dockerfile: Dockerfile
+    image: django-devops
+    environment:
+     - PORT=8020
+    env_file:
+     - .env
+    ports:
+     - "8001:8020"
+    command: sh -c "chmod +x /code/app/migrate.sh && sh /code/app/migrate.sh && /code/entrypoint.sh"
+
+  postgres_db:
+    image: postgres
+    restart: always
+    command: -p 5434
+    env_file:
+      - .env
+    expose:
+      - 5434
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+#    ports:
+#      - "5434:5434"
+
+
+volumes:
+  postgres_data:
