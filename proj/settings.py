@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'app.apps.AppConfig'
 ]
 
 MIDDLEWARE = [
@@ -80,32 +81,31 @@ DATABASES = {
     }
 }
 
-POSTGRES_READY = os.environ.get("POSTGRES_READY")
-DB_USERNAME = os.environ.get("POSTGRES_USER")
-DB_PASSWORD = os.environ.get("POSTGRES_PASSWORD")
-DB_DATABASE = os.environ.get("POSTGRES_DB")
-DB_HOST = os.environ.get("POSTGRES_HOST")
-DB_PORT = os.environ.get("POSTGRES_PORT")
-DB_IS_AVAIL = all([
-    DB_USERNAME,
-    DB_PASSWORD,
-    DB_DATABASE,
-    DB_HOST,
-    DB_PORT
-])
-DB_IGNORE_SSL=os.environ.get("DB_IGNORE_SSL") == "true"
-
-if DB_IS_AVAIL and POSTGRES_READY:
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.postgresql",
-            "NAME": DB_DATABASE,
-            "USER": DB_USERNAME,
-            "PASSWORD": DB_PASSWORD,
-            "HOST": DB_HOST,
-            "PORT": DB_PORT,
-        }
-    }
+# POSTGRES_READY = os.environ.get("POSTGRES_READY")
+# DB_USERNAME = os.environ.get("POSTGRES_USER")
+# DB_PASSWORD = os.environ.get("POSTGRES_PASSWORD")
+# DB_DATABASE = os.environ.get("POSTGRES_DB")
+# DB_HOST = os.environ.get("POSTGRES_HOST")
+# DB_PORT = os.environ.get("POSTGRES_PORT")
+# DB_IS_AVAIL = all([
+#     DB_USERNAME,
+#     DB_PASSWORD,
+#     DB_DATABASE,
+#     DB_HOST,
+#     DB_PORT
+# ])
+# DB_IGNORE_SSL = os.environ.get("DB_IGNORE_SSL") == "true"
+# if DB_IS_AVAIL and POSTGRES_READY:
+#     DATABASES = {
+#         "default": {
+#             "ENGINE": "django.db.backends.postgresql",
+#             "NAME": DB_DATABASE,
+#             "USER": DB_USERNAME,
+#             "PASSWORD": DB_PASSWORD,
+#             "HOST": DB_HOST,
+#             "PORT": DB_PORT,
+#         }
+#     }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
