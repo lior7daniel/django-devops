@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'app.apps.AppConfig'
 ]
 
 MIDDLEWARE = [
@@ -93,8 +94,7 @@ DB_IS_AVAIL = all([
     DB_HOST,
     DB_PORT
 ])
-DB_IGNORE_SSL=os.environ.get("DB_IGNORE_SSL") == "true"
-
+DB_IGNORE_SSL = os.environ.get("DB_IGNORE_SSL") == "true"
 if DB_IS_AVAIL and POSTGRES_READY:
     DATABASES = {
         "default": {
